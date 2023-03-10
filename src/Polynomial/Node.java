@@ -30,5 +30,5 @@ public class Node {
 
     public int getCoefficient (){return this.coefficient;}
 
-    public Node getNode (){return this.nextNode;}
+    public Node getNextNode (){return this.nextNode;}
 }
