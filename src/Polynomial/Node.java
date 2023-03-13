@@ -31,4 +31,23 @@ public class Node {
     public int getCoefficient (){return this.coefficient;}
 
     public Node getNextNode (){return this.nextNode;}
+
+// String representation of node
+    public String toString() {
+        String tempString = "";
+        if (this.coefficient != 0) {
+            tempString += "+";
+
+            if (this.coefficient != 1 || this.exponent == 0) {
+                tempString += Integer.toString(this.coefficient);
+            }
+            if (this.exponent > 0) {
+                tempString += "x";
+            }
+            if (this.exponent != 1) {
+                tempString += "^" + Integer.toString(this.exponent);
+            }
+        }
+        return tempString;
+    }
 }

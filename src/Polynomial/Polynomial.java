@@ -1,5 +1,6 @@
 package Polynomial;
 
+import javax.swing.*;
 import java.sql.SQLOutput;
 import java.util.Scanner;
 
@@ -76,16 +77,16 @@ public class Polynomial {
         StringBuilder stringBuilder = new StringBuilder();
         Node currentNode = headNode;
         while (currentNode != null) {
-            if (currentNode.getCoefficient() != 0 ){
+            if (currentNode.getCoefficient() != 0) {
                 if (currentNode.getExponent() == 0) {
-                   stringBuilder.append(currentNode.getCoefficient());
+                    stringBuilder.append(currentNode.getCoefficient());
                 } else if (currentNode.getExponent() == 1) {
                     if (currentNode.getCoefficient() == 1) {
                         stringBuilder.append("x");
                     } else if (currentNode.getCoefficient() == -1) {
                         stringBuilder.append("-x");
-                    }  else {
-                       stringBuilder.append(currentNode.getCoefficient()).append("x");
+                    } else {
+                        stringBuilder.append(currentNode.getCoefficient()).append("x");
                     }
                 } else {
                     if (currentNode.getCoefficient() == 1) {
@@ -111,7 +112,7 @@ public class Polynomial {
         Node current3 = null;
         while (current1 != null || current2 != null) {
             Node node;
-            if (current1 == null){
+            if (current1 == null) {
                 node = new Node(current2.getExponent(), current2.getCoefficient());
                 current2 = current2.getNextNode();
             } else if (current2 == null) {
@@ -130,11 +131,45 @@ public class Polynomial {
             }
             if (current3 == null) {
                 result.headNode = node;
-            }else {
+            } else {
                 current3.setNextNode(node);
             }
             current3 = node;
         }
         return result;
     }
+
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        Node currentNode = headNode;
+        while (currentNode != null){
+            if (currentNode.getCoefficient() != 0){
+                if (currentNode.getExponent() == 0){
+                    stringBuilder.append(currentNode.getCoefficient());
+                } else if (currentNode.getExponent() == 1) {
+                    if (currentNode.getCoefficient() == 1){
+                        stringBuilder.append("x");
+                    } else if (currentNode.getCoefficient() == -1) {
+                        stringBuilder.append("-x");
+                    } else {
+                        stringBuilder.append(currentNode.getCoefficient()).append("x");
+                    }
+                } else {
+                    if (currentNode.getCoefficient() == 1){
+                        stringBuilder.append("x").append(currentNode.getExponent());
+                    } else if (currentNode.getCoefficient() == -1) {
+                        stringBuilder.append("-x").append(currentNode.getExponent());
+                    } else {
+                        stringBuilder.append(currentNode.getCoefficient()).append("x^").append(currentNode.getExponent());
+                    }
+                }
+                if (currentNode.getNextNode() != null && currentNode.getNextNode().getCoefficient() > 0){
+                    stringBuilder.append("+");
+                }
+            }
+            currentNode  = currentNode.getNextNode();
+        }
+        return stringBuilder.toString();
+    }
+
 }
